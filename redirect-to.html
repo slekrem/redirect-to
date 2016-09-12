@@ -1,0 +1,46 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`redirect-to`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="redirect-to">
+    <template>
+        <style>
+        :host {
+            display: none;
+        }
+        </style>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'redirect-to',
+
+            properties: {
+                log: {
+                    type: Boolean,
+                    value: false
+                },
+                url: {
+                    type: String
+                },
+                redirect: {
+                    type: Boolean,
+                    observer: "_redirectChanged"
+                }
+            },
+
+            _redirectChanged: function() {
+                if (this.redirect) {
+                    window.location = this.url;
+                    if (this.log)
+                        console.log(window.location);
+                }
+            }
+        });
+    </script>
+</dom-module>
